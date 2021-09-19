@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Chatrooms{% endblock %}
+
+{% block header %}Chatrooms{% endblock %}
+
+{% block body %}
+<div class="logout">
+    <h3><a href="{{ url_for('logout') }}">Log out {{ g.user.username }}</a></h3>
+</div>
+
+<div class="container">
+    <nav class="all-chatrooms" aria-label="All chatrooms">
+        {% if all_chatrooms|length %}
+            <h3>All available chatrooms</h3>
+            <ul>
+                {% for chatroom in all_chatrooms %}
+                    <li><a href="{{ url_for('enter_chatroom', chatroom_id=chatroom.chatroom_id) }}">{{ chatroom.name }}</a></li>
+                {% endfor %}
+        </ul>
+        {% else %}
+            <h3>No available chatrooms</h3>
+        {% endif %}
+    </nav>
+
+    <div class="create-chatroom">
+        <form action="" method="post">
+            <label for="chatroom-name">Create chatroom:</label>
+            <input type="text" id="chatroom-name" name="chatroom-name" required/>
+            {% if error_chatroom_name != "" %}
+                <span>{{ error_chatroom_name }}</span>
+            {% endif %}
+
+            <input type="submit" id="chatroom-form" class="login-button" value="CREATE CHATROOM"/>
+        </form>
+    </div>
+
+    {% if user_created_chatrooms|length %}
+    <nav class="delete-chatroom" aria-label="Delete chatroom">
+        <h3>Delete one of your chatrooms</h3>
+        <ul>
+            {% for chatroom in user_created_chatrooms %}
+                <li><a href="{{ url_for('delete_chatroom', chatroom_id=chatroom.chatroom_id) }}">{{ chatroom.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+{% endblock %}

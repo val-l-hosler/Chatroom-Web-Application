@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %} {{ chatroom_name }} {% endblock %}
+
+{% block script %}
+<script>
+    let id = "{{ chatroom_id }}";
+    let poller_flag = true;
+    let timeout_id;
+    let timeout = 1000;
+
+    function clear_input() {
+        document.getElementById("chat-message").value = "";
+    }
+
+    function poller() {
+        console.log("Polling for new items...");
+
+        fetch(("/update_messages/" + id))
+        .then((response) => {
+            return response.json();
+        })
+        .then(update_messages)
+        .catch(() => {
+            console.log("Error fetching items!");
+        });
+    }
+
+    function post_message() {
+        console.log("Sending POST request");
+        let message = document.getElementById("chat-message").value;
+        const datetime = document.getElementById("date-time").value;
+        const chatroom = document.getElementById("chatroom-id").value;
+        const author = document.getElementById("author-username").value;
+        const span = document.getElementById("error-message");
+
+        if (message) {
+            if (message.length > 500) {
+                span.textContent = "The message was too long so it was truncated.";
+                span.style.marginBottom = "40px";
+                message = message.slice(0, 500);
+            }
+        }
+
+        fetch("/new_message", {
+            method: "post",
+            headers: {"Content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
+            body: `message_contents=${message}&date_time=${datetime}&chatroom_id=${chatroom}&author_username=${author}`
+        })
+        .then((response) => {
+            return response.json();
+        })
+        .then((result) => {
+            update_messages(result);
+            clear_input();
+        })
+        .catch(() => {
+            console.log("Error posting new items!");
+        });
+    }
+
+    function redirect() {
+        window.location.href = "http://valhos.pythonanywhere.com/leave_chatroom";
+    }
+
+    function setup() {
+        document.getElementById("chat-form").addEventListener("click", function init(event) {
+            event.preventDefault();
+            post_message();
+        });
+
+        if (poller_flag === true) {
+            timeout_id = window.setTimeout(poller, timeout);
+        } else {
+            timeout_id = window.setTimeout(redirect, 3000);
+        }
+    }
+
+    function update_messages(result) {
+        console.log("Updating the messages...");
+        const message_container = document.getElementById("message-container");
+
+        if (result[0] === "REDIRECT!") {
+            if (poller_flag === true) {
+                message_container.textContent = "";
+
+                let p = document.createElement("p");
+                p.textContent = "The chatroom has been deleted. Redirecting you back to the chatroom list in 3 seconds.";
+
+                let div = document.createElement("div");
+                div.classList.add("message");
+
+                div.appendChild(p);
+                message_container.appendChild(div);
+
+                poller_flag = false;
+            }
+        } else {
+            for (let i = 0; i < result.length; i++) {
+                let p = document.createElement("p");
+                p.textContent = result[i].message_contents;
+
+                let h4 = document.createElement("h4");
+                h4.textContent = "Posted by " + result[i].author_username + " on " + result[i].date_time;
+
+                let div = document.createElement("div");
+                div.classList.add("message");
+
+                div.appendChild(p);
+                div.appendChild(h4);
+
+                message_container.appendChild(div);
+            }
+        }
+
+        if (poller_flag === true) {
+            timeout_id = window.setTimeout(poller, timeout);
+        } else {
+            timeout_id = window.setTimeout(redirect, 3000);
+        }
+    }
+
+    window.onload = setup;
+</script>
+{% endblock %}
+
+{% block header %} {{ chatroom_name }} {% endblock %}
+
+{% block body %}
+
+<div class="logout">
+    <h3><a href="{{ url_for('logout') }}">Log out {{ g.user.username }}</a></h3>
+</div>
+
+<div class="container">
+    <h3 class="back"><a href="{{ url_for('leave_chatroom') }}">Leave the chatroom</a></h3>
+
+    <div id="message-container" class="message-container">
+    </div>
+
+    <div class="write-chat-message-container">
+        <form action="" method="post">
+            <input type="hidden" id="date-time" name="date-time" value="{{ date_time }}">
+            <input type="hidden" id="chatroom-id" name="chatroom-id" value="{{ chatroom_id }}">
+            <input type="hidden" id="author-username" name="author-username" value="{{ author_username }}">
+            <label for="chat-message">Message:</label>
+            <textarea id="chat-message" name="chat-message" rows="7" cols="20"></textarea>
+
+            <span id="error-message"></span>
+
+            <input type="submit" id="chat-form" class="login-button" value="MESSAGE CHATROOM">
+        </form>
+    </div>
+</div>
+{% endblock %}

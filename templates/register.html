@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block header %}Register{% endblock %}
+
+{% block body %}
+<div class="container-login">
+    <form action="" method="post">
+        <label for="register-username">Username:</label>
+        <input type="text" id="register-username" name="register-username" required/>
+        {% if error_username != "" %}
+            <span>{{ error_username }}</span>
+        {% endif %}
+
+        <label for="register-password">Password:</label>
+        <input type="text" id="register-password" name="register-password" required/>
+        {% if error_password != "" %}
+            <span>{{ error_password }}</span>
+        {% endif %}
+
+        <input type="submit" id="register-form" class="login-button" name="register" value="REGISTER"/>
+    </form>
+</div>
+{% endblock %}

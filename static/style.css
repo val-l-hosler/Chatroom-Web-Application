@@ -1,0 +1,257 @@
+body {
+    background-color: #ecebe8;
+    font-family: 'roboto', arial, sans-serif;
+    font-size: 17px;
+    margin: 0;
+    word-break: break-all;
+}
+
+form input {
+    font-size: 17px;
+}
+
+h2 {
+    background: #53347d;
+    box-sizing: border-box;
+    color: #fcfdfd;
+    font-size: 36px;
+    line-height: 1;
+    margin: 0;
+    padding: 40px;
+    text-align: center;
+    width: 100%;
+}
+
+h3 {
+    background-color: #fcfdfd;
+    color: #53347d;
+    margin: 0;
+    padding: 20px;
+    text-align: right;
+}
+
+h3 a, h3 a:visited {
+    color: #53347d;
+}
+
+h4 {
+    border-top: 2px solid #d4d3cc;
+    font-size: 17px;
+    font-weight: normal;
+    margin: 40px 0 0 0;
+    padding: 40px 0 0 0;
+    text-align: right;
+}
+
+nav {
+    background-color: #d4d3cc;
+    margin: 40px 0 40px 0;
+    width: 75%;
+}
+
+nav a {
+    color: #000000;
+    display: block;
+    padding: 20px;
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    color: #000000;
+    font-size: 21px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+p {
+    font-size: 17px;
+    margin: 0;
+    padding: 0;
+    white-space: break-spaces;
+}
+
+textarea {
+    font-size: 17px;
+}
+
+.all-chatrooms a:hover, .all-chatrooms a:focus {
+    background-color: #c9c7be;
+}
+
+.all-chatrooms h3 {
+    border-bottom: 2px solid #53347d;
+    background-color: #ecebe8;
+    color: #000000;
+    font-size: 21px;
+    margin: 0;
+    padding: 0 20px 20px 20px;
+    text-align: left;
+}
+
+.back {
+    background-color: #d4d3cc;
+    font-size: 21px;
+    margin: 40px 0 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.back a, .back a:visited {
+    color: #000000;
+    text-decoration: none;
+}
+
+.back:hover, .back:focus {
+    background-color: #c9c7be;
+}
+
+.container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.container-login {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 17px;
+    justify-content: center;
+    height: auto;
+    min-height: calc(100vh - 196px);
+    margin: 40px 0 40px 0;
+    max-height: 100%;
+}
+
+.container-login form {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.container-login form input {
+    font-size: 17px;
+    margin: 0 0 40px 0;
+    padding: 10px;
+}
+
+.container-login form label {
+    margin: 0 0 40px 0;
+}
+
+.container-login span {
+    color: red;
+    margin-bottom: 40px;
+}
+
+.create-chatroom {
+    background-color: #fcfdfd;
+    margin: 40px 0 40px 0;
+    padding: 40px;
+    width: 50%;
+}
+
+.create-chatroom form, .write-chat-message-container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.create-chatroom form input, .write-chat-message-container form input {
+    margin: 0 0 40px 0;
+    padding: 10px;
+}
+
+.create-chatroom form input[type=submit], .write-chat-message-container form input[type=submit] {
+    margin: 0 0 0 0;
+    width: 100%;
+}
+
+.create-chatroom form label, .write-chat-message-container form label {
+    margin: 0 0 40px 0;
+}
+
+.create-chatroom span, .write-chat-message-container span {
+    color: red;
+    margin-bottom: 40px;
+}
+
+.delete-chatroom {
+    background-color: #eac8c8;
+}
+
+.delete-chatroom a:hover, .delete-chatroom a:focus {
+    background-color: #e8abab;
+}
+
+.delete-chatroom h3 {
+    border-bottom: 2px solid red;
+    background-color: #ecebe8;
+    color: #000000;
+    font-size: 21px;
+    padding: 0 20px 20px 20px;
+    text-align: left;
+}
+
+.login-button {
+    background-color: #eba778;
+    border: 0;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 0 20px 0 20px;
+    text-align: center;
+}
+
+.login-button:hover, .login-button:focus {
+    background-color: #e38545;
+}
+
+.logout a:hover, .logout a:focus {
+    background-color: #ecebe8;
+}
+
+.message-container {
+    margin: 40px 0 0 0;
+    width: 75%;
+}
+
+.message {
+    background-color: #fcfdfd;
+    border-left: 10px solid #d4d3cc;
+    margin: 0 0 40px 0;
+    padding: 40px;
+}
+
+.register-div {
+    display: flex;
+    justify-content: flex-start;
+    width: 40%;
+}
+
+.register-div a, .register-div a:visited {
+    color: #53347d;
+    text-decoration: underline;
+}
+
+.register-div a:hover, .register_div a:focus {
+    background-color: #fcfdfd;
+}
+
+.write-chat-message-container {
+    background-color: #fcfdfd;
+    margin: 0 0 40px 0;
+    padding: 40px;
+    width: 50%;
+}
+
+#error-message {
+    margin: 40px 0 0 0;
+}
