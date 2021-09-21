@@ -2,7 +2,7 @@
 
 This is a project from CS 1520, Programming Languages for Web Applications. I created a chatroom web application where a user can create an account, create/delete chatrooms, and participate in said chatrooms. 
 
-Though the project description did not require extensive styling or responsivity, I tried to make the web application as neat and user-friendly as possible. Though the project description did not require extensive styling or responsivity, I tried to make the web application as neat and user-friendly as possible. **However, it is not 100% responsive, as the web application only needed to be viewable on a desktop browser**.
+Though the project description did not require extensive styling or responsivity, I tried to make the web application as neat and user-friendly as possible with some responsive elements. **However, it is not 100% responsive, as the web application only needed to be viewable on a Google Chrome desktop browser**.
 
 ### :point_right: Visit the [following url](http://valhos.pythonanywhere.com/) to view a live demo.
 
